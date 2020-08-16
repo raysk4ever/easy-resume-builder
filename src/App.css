@@ -1,38 +1,52 @@
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  background-image: linear-gradient(108deg, #2230b2, rgb(223, 45, 33));
+  color: whitesmoke;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all .01s .01s ease-in-out;
+  font-size: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button:hover {
+  background-image: linear-gradient(172deg, #2224b2, rgb(223, 45, 33));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+
+.landing {
+  background: url('https://pixabay.com/get/55e4d14a4e50ae14f6d1867dda20357b1d3dd9e14e507440722a7cdc954ccc_1920.png');
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;  
+}
+.home-landing {
+  /* display: grid;
+  place-items: center; */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: url('https://pixabay.com/get/52e7dd404e51ac14f6d1867dda20357b1d3dd9e14e507440722a7cdc9249c0_1920.png');
 }
 
-.App-link {
-  color: #61dafb;
+.home-landing > h1 {
+  background-color: whitesmoke;
+  padding: 10px;
+  color: #252323;
+  font-size: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.create-landing {
+  height: 80vh;
+  background: url('https://pixabay.com/get/55e4d14a4e50ae14f6d1867dda20357b1d3dd9e14e507440722a7cdc954ccc_1920.png');
 }
