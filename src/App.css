@@ -25,6 +25,14 @@ input {
   padding: 10px;
   min-width: 200px;
   margin: 10px 10px;
+  background-color: #eee;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: slateblue;
+  margin: 10px;
 }
 
 
@@ -60,14 +68,15 @@ input {
 
 .rb-wapper {
   display: flex;
-  height: 100vh;
-  background: brown;
+  height: 90vh;
+  padding: 10px;
 }
 
 .rb-form {
   flex: 1;
-  background-color: red; 
+  background-color: skyblue;
 }
+
 .rb-form > form {
   display: flex;
   flex-direction: column;
@@ -76,6 +85,80 @@ input {
 }
 
 .rb-preview {
+  flex: 1.5;
+  display: flex;
+  margin: 0px 10px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 1px #ddd;
+}
+
+.rb-preview-wapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex: 1;
+}
+
+.rbp-input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rbp-input-group .label{
+  margin: 0px 10px;
+}
+.rbp-input-group .icon {
+  width: 30px;
+  height: 30px;
+  margin: 0px 10px;
+}
+.rbp-input-group .label::after {
+  content: ':';
+}
+
+.rbp-top {
+ 
+}
+
+.rbp-top .rbp-top-1 .pre-name {
+  letter-spacing:8px;
+  margin: 5px 0px;
+}
+
+.rbp-top .rbp-top-2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.rbp-body {
+  display: flex;
+  flex: 1;
+}
+.rbp-body .heading {
+  font-size: large;
+  font-weight: bold;
+}
+
+.rbp-body-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin: 10px 0px;
+}
+.rbp-body-section .heading {
+  margin-bottom: 10px;
+}
+.rbp-body-left{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
   flex: 2;
-  background-color: green; 
+}
+.rbp-body-right{
+  display: flex;
+  padding: 10px;
+  background-color: skyblue;
+  flex: 1;
 }

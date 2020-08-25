@@ -1,58 +1,51 @@
 import axios from "axios";
 import React, { Component } from "react";
 import Resume from "./resume";
+import Form from "./Form";
 
 class Create extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userData: {
-        firstName: "",
-        lastName: "",
-        email: "",
+      resumeData: {
+        firstName: "Ravi",
+        lastName: "Singh",
+        designation: "Software Engineer",
+        email: 'raysk7161@gmail.com',
+        website: 'localhost',
+        mobile: '6396180310',
+        address: 'Bangalore',
       },
     };
   }
 
   handleOnChange = (event) => {
-    let { userData } = this.state,
+    let { resumeData } = this.state,
       { name, value } = event.target;
-    userData[name] = value;
-    this.setState({ userData });
+    resumeData[name] = value;
+    this.setState({ resumeData });
   };
 
   handleOnSubmit = (event) => {
     event.preventDefault();
   };
   render() {
+    const { resumeData } = this.state;
     return (
       <div className="landing create-landing">
         <div>
           <p>Create Page</p>
         </div>
-        <div className='rb-wapper'>
-          <div className='rb-form'>
-            <form>
-              <input
-                name="firstName"
-                onChange={this.handleOnChange}
-                placeholder="First Name"
-              />
-              <input
-                name="lastName"
-                onChange={this.handleOnChange}
-                placeholder="Last Name"
-              />
-              <input
-                name="email"
-                onChange={this.handleOnChange}
-                placeholder="Email"
-              />
-              <input value="Submit" onClick={this.handleOnSubmit} type="submit" />
-            </form>
+        <div className="rb-wapper">
+          <div className="rb-form">
+            <Form
+              resumeData={resumeData}
+              handleOnChange={this.handleOnChange}
+              handleOnSubmit={this.handleOnSubmit}
+            />
           </div>
-          <div className='rb-preview'>
-            <Resume />
+          <div className="rb-preview">
+            <Resume resumeData={resumeData} />
           </div>
         </div>
       </div>
