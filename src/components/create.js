@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { Component } from "react";
 import Resume from "./resume";
 import Form from "./Form";
@@ -11,41 +10,121 @@ class Create extends Component {
         firstName: "Ravi",
         lastName: "Singh",
         designation: "Software Engineer",
-        email: 'raysk7161@gmail.com',
-        website: 'localhost',
-        mobile: '6396180310',
-        address: 'Bangalore',
+        email: "raysk7161@gmail.com",
+        website: "localhost",
+        mobile: "6396180310",
+        address: "Bangalore",
+        objective:
+          "Voluptate Lorem ea ullamco dolor in dolor non labore. Cupidatat ipsum ad cillum labore nostrud veniam. Quis ea sint eiusmod voluptate minim occaecat quis ex dolore. Esse eiusmod Lorem magna cillum qui culpa tempor. Culpa cillum duis voluptate irure deserunt ad tempor ad velit magna labore. Aute nostrud cupidatat eiusmod et officia adipisicing velit deserunt consequat.",
+        projects: [
+          {
+            name: "Easy Resume Builder",
+            description: "Web App to create awesome resume builder",
+          },
+          {
+            name: "Meme Creator",
+            description: "Web App to create Memes with awesome web editor",
+          },
+        ],
+        skills: [],
+      },
+      themeColors: [
+        {
+          title: 'Green',
+          color: 'green'
+        },
+        {
+          title: 'orange',
+          color: 'orange'
+        },
+        {
+          title: 'seagreen',
+          color: 'seagreen'
+        },
+        {
+          title: 'pink',
+          color: 'pink'
+        },
+        {
+          title: 'black',
+          color: 'black'
+        }
+      ],
+      currentTheme: {
+        title: 'seagreen',
+        color: 'seagreen'
       },
     };
   }
 
-  handleOnChange = (event) => {
+  handleOnThemeChange = (theme) => {
+    let root = document.documentElement
+    root.style.setProperty('--themeColor', theme.color)
+    this.setState({currentTheme: theme})
+  }
+
+  handleOnChange = (event, index, type, key) => {
     let { resumeData } = this.state,
       { name, value } = event.target;
-    resumeData[name] = value;
+
+    if (type === "projects") {
+      resumeData[type][index][key] = value;
+    } else resumeData[name] = value;
+    this.setState({ resumeData });
+  };
+
+  handleOnAddBtnClick = (e, type) => {
+    e.preventDefault();
+    let { resumeData } = this.state;
+    if (type === "projects") {
+      let newProject = {
+        name: "",
+        description: "",
+      };
+      resumeData.projects.push(newProject);
+    }
+    this.setState({ resumeData });
+  };
+
+  handleOnRemove = (e, type, key) => {
+    e.preventDefault();
+    console.log(e, type, key);
+    let { resumeData } = this.state;
+    resumeData[type].splice(key, 1);
     this.setState({ resumeData });
   };
 
   handleOnSubmit = (event) => {
     event.preventDefault();
   };
+
   render() {
-    const { resumeData } = this.state;
+    const { resumeData, currentTheme } = this.state;
     return (
       <div className="landing create-landing">
-        <div>
-          <p>Create Page</p>
+        <div className="create-landing-title">
+          <h1>Easy Resume Builder</h1>
         </div>
         <div className="rb-wapper">
-          <div className="rb-form">
+          <div className="rb-form-wapper">
             <Form
               resumeData={resumeData}
               handleOnChange={this.handleOnChange}
+              handleOnAddBtnClick={this.handleOnAddBtnClick}
+              handleOnRemove={this.handleOnRemove}
               handleOnSubmit={this.handleOnSubmit}
             />
           </div>
           <div className="rb-preview">
-            <Resume resumeData={resumeData} />
+            <Resume currentTheme={currentTheme} resumeData={resumeData} />
+          </div>
+          <div className="rb-settings">
+            {this.state.themeColors.map((c, i) => (
+              <div onClick={() =>this.handleOnThemeChange(c)} title={c.title} className='single-theme-item' style={{
+                backgroundColor: c.color
+              }}>
+              </div>
+            ))}
           </div>
         </div>
       </div>

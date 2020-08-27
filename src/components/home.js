@@ -7,7 +7,7 @@ class Home extends Component {
         <div>
           <h1>Resume Builder</h1>
           <Link to="create">
-            <button>Create a Resume now</button>
+            <button className='button-gra'>Create a Resume now</button>
           </Link>
         </div>
       </div>

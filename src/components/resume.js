@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import { ReactComponent as Mobile } from "../assets/icons/phone.svg";
+import { ReactComponent as Email } from "../assets/icons/mail.svg";
+import { ReactComponent as Address } from "../assets/icons/location.svg";
+import { ReactComponent as Website } from "../assets/icons/internet.svg";
 
-const Resume = ({ resumeData }) => {
+const Resume = ({ resumeData, currentTheme }) => {
   return (
     <div className="rb-preview-wapper">
       {/* TOP STARTS */}
       <div className="rbp-top">
         <div className="rbp-top-1">
-          <h1 className="pre-name">
+          <h1 className="pre-name" style={{color: currentTheme.color}}>
             {`${resumeData.firstName} ${resumeData.lastName}`.toUpperCase()}
           </h1>
           <h3>{resumeData.designation.toUpperCase()}</h3>
@@ -14,35 +18,19 @@ const Resume = ({ resumeData }) => {
         <hr></hr>
         <div className="rbp-top-2">
           <div className="rbp-input-group">
-            {/* <p className="label">Email</p> */}
-            <img
-              className="icon"
-              src="https://img.icons8.com/color/48/000000/email.png"
-            />
+            <Email className="icon" fill={currentTheme.color} />
             <p>{resumeData.email}</p>
           </div>
           <div className="rbp-input-group">
-            {/* <p className="label">Mobile</p> */}
-            <img
-              className="icon"
-              src="https://img.icons8.com/ultraviolet/40/000000/phone.png"
-            />
+            <Mobile className="icon" fill={currentTheme.color} />
             <p>{resumeData.mobile}</p>
           </div>
           <div className="rbp-input-group">
-            {/* <p className="label">Address</p> */}
-            <img
-              className="icon"
-              src="https://img.icons8.com/ultraviolet/40/000000/visit.png"
-            />
+            <Address className="icon" fill={currentTheme.color} />
             <p>{resumeData.address}</p>
           </div>
           <div className="rbp-input-group">
-            {/* <p className="label">Website</p> */}
-            <img
-              className="icon"
-              src="https://img.icons8.com/fluent/48/000000/domain.png"
-            />
+            <Website className='icon' fill={currentTheme.color}/>
             <p>{resumeData.website}</p>
           </div>
         </div>
@@ -55,14 +43,7 @@ const Resume = ({ resumeData }) => {
         <div className="rbp-body-left">
           <div className="rbp-body-section">
             <p className="heading">Objective</p>
-            <p>
-              Voluptate Lorem ea ullamco dolor in dolor non labore. Cupidatat
-              ipsum ad cillum labore nostrud veniam. Quis ea sint eiusmod
-              voluptate minim occaecat quis ex dolore. Esse eiusmod Lorem magna
-              cillum qui culpa tempor. Culpa cillum duis voluptate irure
-              deserunt ad tempor ad velit magna labore. Aute nostrud cupidatat
-              eiusmod et officia adipisicing velit deserunt consequat.
-            </p>
+            <p>{resumeData.objective}</p>
           </div>
           <div className="rbp-body-section">
             <p className="heading">Experience</p>
@@ -75,16 +56,16 @@ const Resume = ({ resumeData }) => {
               eiusmod et officia adipisicing velit deserunt consequat.
             </p>
           </div>
-                    <div className="rbp-body-section">
+          <div className="rbp-body-section">
             <p className="heading">Projects</p>
-            <p>
-              Voluptate Lorem ea ullamco dolor in dolor non labore. Cupidatat
-              ipsum ad cillum labore nostrud veniam. Quis ea sint eiusmod
-              voluptate minim occaecat quis ex dolore. Esse eiusmod Lorem magna
-              cillum qui culpa tempor. Culpa cillum duis voluptate irure
-              deserunt ad tempor ad velit magna labore. Aute nostrud cupidatat
-              eiusmod et officia adipisicing velit deserunt consequat.
-            </p>
+            {resumeData.projects.map((pro, key) => (
+              <div key={key} className="single-project-item">
+                <p className="single-project-item-name">{pro.name}</p>
+                <p className="single-project-item-description">
+                  {pro.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
         {/* BODY RIGHT STARTS */}

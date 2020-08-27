@@ -1,9 +1,14 @@
+@import './styles/common.scss';
+
+:root {
+  --themeColor: seagreen;
+}
 
 .App {
   text-align: center;
 }
 
-button {
+.button-gra {
   border: none;
   padding: 10px;
   margin: 10px;
@@ -16,14 +21,13 @@ button {
   font-size: 25px;
 }
 
-button:hover {
+.button-gra:hover {
   background-image: linear-gradient(172deg, #2224b2, rgb(223, 45, 33));
 }
 
 input {
   border: none;
   padding: 10px;
-  min-width: 200px;
   margin: 10px 10px;
   background-color: #eee;
 }
@@ -31,7 +35,7 @@ input {
 hr {
   border: none;
   height: 2px;
-  background-color: slateblue;
+  background-color: var(--themeColor);
   margin: 10px;
 }
 
@@ -52,7 +56,7 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /*background: url('https://pixabay.com/get/52e7dd404e51ac14f6d1867dda20357b1d3dd9e14e507440722a7cdc9249c0_1920.png');*/
+  /* background: url('https://pixabay.com/get/52e7dd404e51ac14f6d1867dda20357b1d3dd9e14e507440722a7cdc9249c0_1920.png'); */
 }
 
 .home-landing > div {
@@ -63,7 +67,13 @@ hr {
 }
 
 .create-landing {
-  background: url('https://pixabay.com/get/55e4d14a4e50ae14f6d1867dda20357b1d3dd9e14e507440722a7cdc954ccc_1920.png');
+  background: #f1f1f1;
+}
+.create-landing-title {
+  margin: 0px 10px;
+  display: flex;
+  align-items: center;
+  height: 5vh;
 }
 
 .rb-wapper {
@@ -71,21 +81,54 @@ hr {
   height: 90vh;
   padding: 10px;
 }
-
-.rb-form {
+/* ------------------------------FORM------------------------------- */
+.rb-form-wapper {
   flex: 1;
   background-color: skyblue;
 }
 
-.rb-form > form {
+.rb-form {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
 }
+.rb-add-btn {
+  border: none;
+  margin: 10px;
+  padding:10px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.form-tabs {
+  display: flex;
+}
+.form-tabs-item {
+  flex: 1;
+  background-color: khaki;
+  cursor: pointer;
+  padding: 2px;
+}
+.form-tabs-item:hover {
+  background-color: gray;
+  color: white;
+}
+
+.form-tabs .active {
+  background-color: black;
+  color: white;
+}
+.single-project-item {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------PREVIEW----------------------------- */
 
 .rb-preview {
-  flex: 1.5;
+  flex: 2;
   display: flex;
   margin: 0px 10px;
   background-color: white;
@@ -96,7 +139,6 @@ hr {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  flex: 1;
 }
 
 .rbp-input-group {
@@ -156,9 +198,42 @@ hr {
   padding: 10px;
   flex: 2;
 }
+
+.rbp-body-left .single-project-item {
+  margin-bottom: 2px;
+}
+.rbp-body-left .single-project-item .single-project-item-name {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.rbp-body-left .single-project-item .single-project-item-description {
+  margin-left: 5px;
+  font-style: italic;
+}
+.rbp-body-left .single-project-item .single-project-item-description::before {
+  content: ' - ';
+}
+
+
 .rbp-body-right{
   display: flex;
   padding: 10px;
-  background-color: skyblue;
+  background-color: var(--themeColor);
   flex: 1;
+}
+
+/* ------------------------------Settings----------------------- */
+
+.rb-settings {
+  display: flex;
+  flex: 1;
+  background-color: khaki;
+}
+
+.single-theme-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px;
 }
