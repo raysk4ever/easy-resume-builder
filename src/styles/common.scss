@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.jcc {
+  justify-content: center;
+}
+
 .jcsb {
   justify-content: space-between;
 }
@@ -9,7 +13,9 @@
 .fdc {
   flex-direction: column;
 }
-
+.fw {
+  flex-wrap: wrap;
+}
 .f1 {
   flex: 1;
 }

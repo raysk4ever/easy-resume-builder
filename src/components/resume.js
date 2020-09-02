@@ -10,7 +10,7 @@ const Resume = ({ resumeData, currentTheme }) => {
       {/* TOP STARTS */}
       <div className="rbp-top">
         <div className="rbp-top-1">
-          <h1 className="pre-name" style={{color: currentTheme.color}}>
+          <h1 className="pre-name" style={{ color: currentTheme.color }}>
             {`${resumeData.firstName} ${resumeData.lastName}`.toUpperCase()}
           </h1>
           <h3>{resumeData.designation.toUpperCase()}</h3>
@@ -30,7 +30,7 @@ const Resume = ({ resumeData, currentTheme }) => {
             <p>{resumeData.address}</p>
           </div>
           <div className="rbp-input-group">
-            <Website className='icon' fill={currentTheme.color}/>
+            <Website className="icon" fill={currentTheme.color} />
             <p>{resumeData.website}</p>
           </div>
         </div>
@@ -47,14 +47,17 @@ const Resume = ({ resumeData, currentTheme }) => {
           </div>
           <div className="rbp-body-section">
             <p className="heading">Experience</p>
-            <p>
-              Voluptate Lorem ea ullamco dolor in dolor non labore. Cupidatat
-              ipsum ad cillum labore nostrud veniam. Quis ea sint eiusmod
-              voluptate minim occaecat quis ex dolore. Esse eiusmod Lorem magna
-              cillum qui culpa tempor. Culpa cillum duis voluptate irure
-              deserunt ad tempor ad velit magna labore. Aute nostrud cupidatat
-              eiusmod et officia adipisicing velit deserunt consequat.
-            </p>
+            {resumeData.experience.map((pro, key) => (
+              <div key={key} className="single-project-item">
+                <p className="single-project-item-name">{`${pro.name} (${pro.to} - ${pro.from})`}</p>
+                <p className="single-project-item-description">
+                  {pro.description}
+                </p>
+                <p className="">
+                  {pro.technologies.join(', ')}
+                </p>
+              </div>
+            ))}
           </div>
           <div className="rbp-body-section">
             <p className="heading">Projects</p>

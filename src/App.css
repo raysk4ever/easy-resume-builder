@@ -1,7 +1,7 @@
 @import './styles/common.scss';
 
 :root {
-  --themeColor: seagreen;
+  --themeColor: #5E5D5C;
 }
 
 .App {
@@ -36,7 +36,7 @@ hr {
   border: none;
   height: 2px;
   background-color: var(--themeColor);
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -78,7 +78,7 @@ hr {
 
 .rb-wapper {
   display: flex;
-  height: 90vh;
+  height: 92vh;
   padding: 10px;
 }
 /* ------------------------------FORM------------------------------- */
@@ -106,12 +106,11 @@ hr {
 }
 .form-tabs-item {
   flex: 1;
-  background-color: khaki;
   cursor: pointer;
-  padding: 2px;
+  padding: 10px;
 }
 .form-tabs-item:hover {
-  background-color: gray;
+  background-color: var(--themeColor);
   color: white;
 }
 
@@ -159,9 +158,13 @@ hr {
 }
 
 .rbp-top {
- 
 }
-
+.rbp-top .rbp-top-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 10vh;
+}
 .rbp-top .rbp-top-1 .pre-name {
   letter-spacing:8px;
   margin: 5px 0px;
@@ -206,6 +209,7 @@ hr {
   margin-bottom: 5px;
   font-weight: bold;
 }
+
 .rbp-body-left .single-project-item .single-project-item-description {
   margin-left: 5px;
   font-style: italic;
@@ -227,13 +231,19 @@ hr {
 .rb-settings {
   display: flex;
   flex: 1;
-  background-color: khaki;
+  background-color: white;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  
 }
 
 .single-theme-item {
   width: 50px;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 100px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #333;
   cursor: pointer;
-  margin: 10px;
+  margin: 5px;
 }

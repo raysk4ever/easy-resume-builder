@@ -4,7 +4,14 @@ class Form extends Component {
     super(props);
     this.state = {
       activeTab: 2,
-      tabs: ["Genral", "Objective", "Projects", "Skills", "Education"],
+      tabs: [
+        "Genral",
+        "Objective",
+        "Experience",
+        "Projects",
+        "Skills",
+        "Education",
+      ],
     };
   }
 
@@ -38,12 +45,14 @@ class Form extends Component {
             <div className="df fdc">
               <div className="df jcsb">
                 <input
+                  maxLength={100}
                   value={resumeData.firstName}
                   name="firstName"
                   onChange={handleOnChange}
                   placeholder="First Name"
                 />
                 <input
+                  maxLength={100}
                   value={resumeData.lastName}
                   name="lastName"
                   onChange={handleOnChange}
@@ -51,30 +60,35 @@ class Form extends Component {
                 />
               </div>
               <input
+                maxLength={100}
                 value={resumeData.designation}
                 name="designation"
                 onChange={handleOnChange}
                 placeholder="Designation"
               />
               <input
+                maxLength={100}
                 value={resumeData.email}
                 name="email"
                 onChange={handleOnChange}
                 placeholder="Email"
               />
               <input
+                maxLength={100}
                 value={resumeData.mobile}
                 name="mobile"
                 onChange={handleOnChange}
                 placeholder="Mobile"
               />
               <input
+                maxLength={100}
                 value={resumeData.address}
                 name="address"
                 onChange={handleOnChange}
                 placeholder="Address"
               />
               <input
+                maxLength={100}
                 value={resumeData.website}
                 name="website"
                 onChange={handleOnChange}
@@ -86,6 +100,7 @@ class Form extends Component {
           {this.state.activeTab === 1 ? (
             <div className="df fdc">
               <input
+                maxLength={100}
                 value={resumeData.objective}
                 name="objective"
                 onChange={handleOnChange}
@@ -94,7 +109,7 @@ class Form extends Component {
             </div>
           ) : null}
           {/* ------------------------------3---------------------- */}
-          {this.state.activeTab === 2 ? (
+          {this.state.activeTab === 3 ? (
             <div className="df fdc f1">
               {resumeData.projects.map((p, i) => (
                 <div className="single-project-item">
@@ -108,10 +123,12 @@ class Form extends Component {
                     </p>
                   </div>
                   <input
+                    maxLength={100}
                     value={p.name}
                     onChange={(e) => handleOnChange(e, i, "projects", "name")}
                   />
                   <input
+                    maxLength={100}
                     value={p.description}
                     onChange={(e) =>
                       handleOnChange(e, i, "projects", "description")
@@ -127,7 +144,50 @@ class Form extends Component {
               </button>
             </div>
           ) : null}
-          {/* ------------------------------4---------------------- */}
+          {/* ------------------------------2---------------------- */}
+          {this.state.activeTab === 2 ? (
+            <div className="df fdc f1">
+              {resumeData.projects.map((p, i) => (
+                <div className="single-project-item">
+                  <div className="df jcsb">
+                    <p>#{i + 1}</p>
+                    <p
+                      className="cp"
+                      onClick={(e) => handleOnRemove(e, "experience", i)}
+                    >
+                      x
+                    </p>
+                  </div>
+                  <input
+                    maxLength={100}
+                    value={p.name}
+                    onChange={(e) => handleOnChange(e, i, "experience", "name")}
+                  />
+                  <input
+                    maxLength={100}
+                    value={p.description}
+                    onChange={(e) =>
+                      handleOnChange(e, i, "experience", "description")
+                    }
+                  />
+                  <div className='df jcsb'>
+                    <input className='f1' placeholder='skills'></input>
+                    <button
+                      className="rb-add-btn"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <button
+                className="rb-add-btn"
+                onClick={(e) => handleOnAddBtnClick(e, "experience")}
+              >
+                Add
+              </button>
+            </div>
+          ) : null}
           <input value="Submit" onClick={handleOnSubmit} type="submit" />
         </form>
       </div>
