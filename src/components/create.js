@@ -8,12 +8,12 @@ class Create extends Component {
     super(props);
     this.state = {
       resumeData: {
-        firstName: "Ravi",
-        lastName: "Singh",
+        firstName: "John",
+        lastName: "Smith",
         designation: "Software Engineer",
-        email: "raysk7161@gmail.com",
-        website: "localhost",
-        mobile: "6396180310",
+        email: "johnsmith@example.com",
+        website: "example.com",
+        mobile: "012xxxxxx9",
         address: "Bangalore",
         objective:
           "Voluptate Lorem ea ullamco dolor in dolor non labore. Cupidatat ipsum ad cillum labore nostrud veniam. Quis ea sint eiusmod voluptate minim occaecat quis ex dolore. Esse eiusmod Lorem magna cillum qui culpa tempor. Culpa cillum duis voluptate irure deserunt ad tempor ad velit magna labore. Aute nostrud cupidatat eiusmod et officia adipisicing velit deserunt consequat.",
