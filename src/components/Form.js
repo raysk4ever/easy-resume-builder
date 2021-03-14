@@ -3,7 +3,7 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 2,
+      activeTab: 0,
       tabs: [
         "Genral",
         "Objective",
@@ -16,6 +16,13 @@ class Form extends Component {
   }
 
   handleOnTabChange = (activeTab) => this.setState({ activeTab });
+  handleOnNext = () => {
+    const { activeTab, tabs } = this.state
+    const newActiveTab = activeTab + 1
+    if (tabs.length > newActiveTab) {
+      this.setState({ activeTab : newActiveTab})
+    }
+  }
 
   render() {
     const {
@@ -31,9 +38,8 @@ class Form extends Component {
           {this.state.tabs.map((tab, index) => (
             <span
               onClick={() => this.handleOnTabChange(index)}
-              className={`form-tabs-item ${
-                this.state.activeTab == index ? "active" : ""
-              }`}
+              className={`form-tabs-item ${this.state.activeTab === index ? "active" : ""
+                }`}
             >
               {tab}
             </span>
@@ -45,6 +51,7 @@ class Form extends Component {
             <div className="df fdc">
               <div className="df jcsb">
                 <input
+                  style={{ width: '50%' }}
                   maxLength={100}
                   value={resumeData.firstName}
                   name="firstName"
@@ -52,6 +59,7 @@ class Form extends Component {
                   placeholder="First Name"
                 />
                 <input
+                  style={{ width: '50%' }}
                   maxLength={100}
                   value={resumeData.lastName}
                   name="lastName"
@@ -99,7 +107,8 @@ class Form extends Component {
           {/* ------------------------------1---------------------- */}
           {this.state.activeTab === 1 ? (
             <div className="df fdc">
-              <input
+              <textarea
+                rows={10}
                 maxLength={100}
                 value={resumeData.objective}
                 name="objective"
@@ -189,6 +198,7 @@ class Form extends Component {
             </div>
           ) : null}
           <input value="Submit" onClick={handleOnSubmit} type="submit" />
+          <button disabled={this.state.activeTab + 1 === this.state.tabs.length} onClick={this.handleOnNext}>Next</button>
         </form>
       </div>
     );

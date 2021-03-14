@@ -4,9 +4,9 @@ import { ReactComponent as Email } from "../assets/icons/mail.svg";
 import { ReactComponent as Address } from "../assets/icons/location.svg";
 import { ReactComponent as Website } from "../assets/icons/internet.svg";
 
-const Resume = ({ resumeData, currentTheme }) => {
+const Resume = ({ resumeData, currentTheme, resumeRef }) => {
   return (
-    <div className="rb-preview-wapper">
+    <div id='resume-preview' ref={resumeRef} className="rb-preview-wapper">
       {/* TOP STARTS */}
       <div className="rbp-top">
         <div className="rbp-top-1">

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Resume from "./resume";
 import Form from "./Form";
 import { themeColors } from "../templates/themes/colors";
+import { jsPDF } from 'jspdf'
+import html2canvas from 'html2canvas'
 
 class Create extends Component {
   constructor(props) {
@@ -42,6 +44,7 @@ class Create extends Component {
       themeColors,
       currentTheme: themeColors[7]
     };
+    this.resumeRef = React.createRef()
   }
 
   handleOnThemeChange = (theme) => {
@@ -90,8 +93,36 @@ class Create extends Component {
   };
 
   handleOnSubmit = (event) => {
+    console.log('inside function')
     event.preventDefault();
+    this.printPdfAsImage()
+    // this.printPDF()
   };
+
+  printPdfAsImage = () => {
+    const input = document.getElementById('resume-preview');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'JPEG', 1, 1);
+        pdf.output('dataurlnewwindow');
+        // pdf.save("download.pdf");
+      })
+  }
+  printPDF() {
+    const div = this.resumeRef.current
+    console.log(div);
+    const printDoc = new jsPDF();
+    printDoc.html(div, {
+      width: 180,
+      // x: 10,
+      // y: 10
+    });
+    printDoc.autoPrint();
+    printDoc.output("dataurlnewwindow"); // this opens a new popup,  after this the PDF opens the print window view but there are browser inconsistencies with how this is handled
+    // printDoc.save("download.pdf");
+  }
 
   render() {
     const { resumeData, currentTheme } = this.state;
@@ -111,7 +142,7 @@ class Create extends Component {
             />
           </div>
           <div className="rb-preview">
-            <Resume currentTheme={currentTheme} resumeData={resumeData} />
+            <Resume currentTheme={currentTheme} resumeData={resumeData} resumeRef={this.resumeRef} />
           </div>
           <div className="rb-settings">
             <div className="df fw jcc">
