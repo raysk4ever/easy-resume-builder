@@ -21,8 +21,8 @@ class Create extends Component {
           "Voluptate Lorem ea ullamco dolor in dolor non labore. Cupidatat ipsum ad cillum labore nostrud veniam. Quis ea sint eiusmod voluptate minim occaecat quis ex dolore. Esse eiusmod Lorem magna cillum qui culpa tempor. Culpa cillum duis voluptate irure deserunt ad tempor ad velit magna labore. Aute nostrud cupidatat eiusmod et officia adipisicing velit deserunt consequat.",
         experience: [
           {
-            name: "Lets Endorse",
-            description: "Backend Developer",
+            name: "Alpha Beta Company",
+            description: "Sales Manager",
             technologies: ['Nodejs', 'Javascript', 'MongoDB', 'Express'],
             to: '2019',
             from: '2020',
@@ -42,7 +42,7 @@ class Create extends Component {
         skills: [],
       },
       themeColors,
-      currentTheme: themeColors[7]
+      currentTheme: themeColors[6]
     };
     this.resumeRef = React.createRef()
   }
@@ -99,13 +99,78 @@ class Create extends Component {
     // this.printPDF()
   };
 
+  makePDF(e) {
+    e.preventDefault()
+    var quotes = document.getElementById('resume-preview');
+
+    html2canvas(quotes).then(canvas => {
+
+
+        //! MAKE YOUR PDF
+        // var pdf = new jsPDF('p', 'pt', 'letter');
+        var pdf = new jsPDF('p', 'pt', 'a4');
+
+        for (var i = 0; i <= quotes.clientHeight/980; i++) {
+            //! This is all just html2canvas stuff
+            var srcImg  = canvas;
+            var sX      = 0;
+            var sY      = 980*i; // start 980 pixels down for every new page
+            var sWidth  = 900;
+            var sHeight = 980;
+            var dX      = 0;
+            var dY      = 0;
+            var dWidth  = 900;
+            var dHeight = 980;
+
+            window.onePageCanvas = document.createElement("canvas");
+            window.onePageCanvas.setAttribute('width', 900);
+            window.onePageCanvas.setAttribute('height', 980);
+            var ctx = window.onePageCanvas.getContext('2d');
+            // details on this usage of this function: 
+            // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images#Slicing
+            ctx.drawImage(srcImg,sX,sY,sWidth,sHeight,dX,dY,dWidth,dHeight);
+
+            // document.body.appendChild(canvas);
+            var canvasDataURL = window.onePageCanvas.toDataURL("image/png", 1.0);
+
+            var width         = window.onePageCanvas.width;
+            var height        = window.onePageCanvas.clientHeight;
+
+            //! If we're on anything other than the first page,
+            // add another page
+            if (i > 0) {
+                pdf.addPage(612, 791); //8.5" x 11" in pts (in*72)
+            }
+            //! now we declare that we're working on that page
+            pdf.setPage(i+1);
+            //! now we add content to that page!
+            pdf.addImage(canvasDataURL, 'PNG', 40, 40, (width*.62), (height*.62));
+
+        }
+        pdf.output('dataurlnewwindow');
+        //! after the for loop is finished running, we save the pdf.
+        // pdf.save('test.pdf');
+    });
+}
+
   printPdfAsImage = () => {
     const input = document.getElementById('resume-preview');
+    if(!input) {
+      alert('Invaid Resume Section')
+      return
+    }
+    console.log({input})
     html2canvas(input)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'JPEG', 1, 1);
+        const pdf = new jsPDF("p", "px", "a4"); // 'p', 'pt', 'letter'
+        const w = pdf.internal.pageSize.getWidth()
+        const h = pdf.internal.pageSize.getHeight()
+        // pdf.html(input.innerHTML, {
+        //   x: 10, y: 10
+        // })
+        // pdf.autoPrint();
+        pdf.addImage(imgData, 'png', 0, 0);
         pdf.output('dataurlnewwindow');
         // pdf.save("download.pdf");
       })
@@ -132,20 +197,21 @@ class Create extends Component {
           <h1>Easy Resume Builder</h1>
         </div>
         <div className="rb-wapper">
-          <div className="rb-form-wapper">
+          <div id ='rb-preview'  className="rb-form-wapper">
             <Form
               resumeData={resumeData}
               handleOnChange={this.handleOnChange}
               handleOnAddBtnClick={this.handleOnAddBtnClick}
               handleOnRemove={this.handleOnRemove}
-              handleOnSubmit={this.handleOnSubmit}
+              handleOnSubmit={this.makePDF}
             />
           </div>
           <div className="rb-preview">
             <Resume currentTheme={currentTheme} resumeData={resumeData} resumeRef={this.resumeRef} />
           </div>
           <div className="rb-settings">
-            <div className="df fw jcc">
+            <p>Theme Color</p>
+            <div className="df fw">
               {this.state.themeColors.map((c, i) => (
                 <div
                   onClick={() => this.handleOnThemeChange(c)}

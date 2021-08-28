@@ -6,6 +6,7 @@ import { ReactComponent as Website } from "../assets/icons/internet.svg";
 
 const Resume = ({ resumeData, currentTheme, resumeRef }) => {
   return (
+
     <div id='resume-preview' ref={resumeRef} className="rb-preview-wapper">
       {/* TOP STARTS */}
       <div className="rbp-top">
@@ -15,28 +16,28 @@ const Resume = ({ resumeData, currentTheme, resumeRef }) => {
           </h1>
           <h3>{resumeData.designation.toUpperCase()}</h3>
         </div>
-        <hr></hr>
+        {/*<hr></hr>*/}
         <div className="rbp-top-2">
           <div className="rbp-input-group">
-            <Email className="icon" fill={currentTheme.color} />
-            <p>{resumeData.email}</p>
+            {/* <Email className="icon" fill={currentTheme.color} /> */}
+            <p>✉️ {resumeData.email}</p>
           </div>
           <div className="rbp-input-group">
-            <Mobile className="icon" fill={currentTheme.color} />
-            <p>{resumeData.mobile}</p>
+            {/* <Mobile className="icon" fill={currentTheme.color} /> */}
+            <p>📞 {resumeData.mobile}</p>
           </div>
           <div className="rbp-input-group">
-            <Address className="icon" fill={currentTheme.color} />
-            <p>{resumeData.address}</p>
+            {/* <Address className="icon" fill={currentTheme.color} /> */}
+            <p> 📍 {resumeData.address}</p>
           </div>
           <div className="rbp-input-group">
-            <Website className="icon" fill={currentTheme.color} />
-            <p>{resumeData.website}</p>
+            {/* <Website className="icon" fill={currentTheme.color} /> */}
+            <p>💻 {resumeData.website}</p>
           </div>
         </div>
       </div>
       {/* TOP ENDS */}
-      <hr></hr>
+      {/*<hr></hr>*/}
       {/* BODY STARTS */}
       <div className="rbp-body">
         {/* BODY LEFT STARTS */}
@@ -73,7 +74,7 @@ const Resume = ({ resumeData, currentTheme, resumeRef }) => {
         </div>
         {/* BODY RIGHT STARTS */}
         <div className="rbp-body-right">
-          <p>Right</p>
+          {/* <p>🧑🏻‍💻</p> */}
         </div>
       </div>
       {/* BODY ENDS */}
