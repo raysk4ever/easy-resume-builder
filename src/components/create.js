@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef} from "react";
 import Resume from "./resume";
 import Form from "./Form";
 import { themeColors } from "../templates/themes/colors";
@@ -44,7 +44,7 @@ class Create extends Component {
       themeColors,
       currentTheme: themeColors[6]
     };
-    this.resumeRef = React.createRef()
+    this.resumeRef = createRef()
   }
 
   handleOnThemeChange = (theme) => {
