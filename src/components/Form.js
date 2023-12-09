@@ -1,29 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { tabs } from "../mockData";
 import { ResumeContext } from "../contextAPI/ResumeContext";
+import { useResume } from "../customHooks/useResume";
 
-const Form = ({
-  handleOnChange,
-  resumeData,
-  handleOnAddBtnClick,
-  handleOnRemove,
-  handleOnSubmit,
-}) => {
-  const { activeTab, setActiveTab } = useContext(ResumeContext);
-
-  const handleOnTabChange = (activeTab) => {
-    setActiveTab(activeTab);
-  };
-
-  const handleOnNext = (e) => {
-    e.preventDefault();
-    setActiveTab((curr) => {
-      if (tabs.length > curr + 1) {
-        return curr + 1;
-      }
-      return curr;
-    });
-  };
+const Form = ({ handleOnSubmit }) => {
+  const {
+    activeTab,
+    setActiveTab,
+    resumeData,
+    handleOnTabChange,
+    handleOnNext,
+    handleOnChange,
+    handleOnAddBtnClick,
+    handleOnRemove,
+  } = useResume();
 
   return (
     <div className="df">
