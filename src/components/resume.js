@@ -6,8 +6,7 @@ import { ReactComponent as Website } from "../assets/icons/internet.svg";
 
 const Resume = ({ resumeData, currentTheme, resumeRef }) => {
   return (
-
-    <div id='resume-preview' ref={resumeRef} className="rb-preview-wapper">
+    <div id="resume-preview" ref={resumeRef} className="rb-preview-wapper">
       {/* TOP STARTS */}
       <div className="rbp-top">
         <div className="rbp-top-1">
@@ -54,9 +53,7 @@ const Resume = ({ resumeData, currentTheme, resumeRef }) => {
                 <p className="single-project-item-description">
                   {pro.description}
                 </p>
-                <p className="">
-                  {pro.technologies.join(', ')}
-                </p>
+                <p className="">{pro.technologies.join(", ")}</p>
               </div>
             ))}
           </div>
@@ -73,9 +70,7 @@ const Resume = ({ resumeData, currentTheme, resumeRef }) => {
           </div>
         </div>
         {/* BODY RIGHT STARTS */}
-        <div className="rbp-body-right">
-          {/* <p>🧑🏻‍💻</p> */}
-        </div>
+        <div className="rbp-body-right">{/* <p>🧑🏻‍💻</p> */}</div>
       </div>
       {/* BODY ENDS */}
     </div>

@@ -1,7 +1,7 @@
 import React, { Component, createRef} from "react";
-import Resume from "./resume";
+import Resume from "../components/resume";
 // import Form from "./Form_old";
-import Form from "./Form"
+import Form from "../components/Form"
 import { themeColors } from "../templates/themes/colors";
 import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
