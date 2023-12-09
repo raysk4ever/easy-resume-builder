@@ -90,7 +90,6 @@ const Form = ({ handleOnSubmit }) => {
               />
             </div>
           ) : null}
-          {/* ------------------------------1---------------------- */}
           {activeTab === 1 ? (
             <div className="df fdc">
               <textarea
